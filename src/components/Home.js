@@ -6,7 +6,7 @@ import { Tabs, Tab } from 'react-bootstrap'
 class Home extends Component {
   render() {
     return (
-      <div class="home">
+      <div className="home">
         <h3 className='center'>Your Questions</h3>
         <Tabs defaultActiveKey="unanswered-questions" transition={false} id="questions-tab">
           <Tab eventKey="unanswered-questions" title="Unanswered Questions">

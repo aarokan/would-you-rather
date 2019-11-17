@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import Home from './Home'
 import { Layout } from './Layout'
+import LoadingBar from 'react-redux-loading'
 // import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // import { NavigationBar } from './NavigationBar'
 
@@ -13,6 +14,7 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
+        <LoadingBar />
         { /* <Router> */ }
           { /* <NavigationBar /> */ }
           <Layout>
