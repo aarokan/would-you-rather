@@ -28,7 +28,7 @@ class App extends Component {
           }
             {this.props.loading === true
               ? null
-              : <NewQuestion />}
+              : <Home />}
           </Layout>          
         { /* </Router> */ }
       </React.Fragment>
