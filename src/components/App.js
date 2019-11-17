@@ -4,6 +4,7 @@ import { handleInitialData } from '../actions/shared'
 import Home from './Home'
 import { Layout } from './Layout'
 import LoadingBar from 'react-redux-loading'
+import NewQuestion from './NewQuestion'
 // import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // import { NavigationBar } from './NavigationBar'
 
@@ -27,7 +28,7 @@ class App extends Component {
           }
             {this.props.loading === true
               ? null
-              : <Home />}
+              : <NewQuestion />}
           </Layout>          
         { /* </Router> */ }
       </React.Fragment>
