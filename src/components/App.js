@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import Home from './Home'
 import { Layout } from './Layout'
+// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+// import { NavigationBar } from './NavigationBar'
 
 class App extends Component {
   componentDidMount() {
@@ -10,13 +12,23 @@ class App extends Component {
   }
   render() {
     return (
-      <div>
-        <Layout>
-          {this.props.loading === true
-            ? null
-            : <Home />}
-        </Layout>
-      </div>
+      <React.Fragment>
+        { /* <Router> */ }
+          { /* <NavigationBar /> */ }
+          <Layout>
+          { 
+          /* 
+          <Switch>
+              <Route exact path="/" component={Home} />
+          </Switch>
+          */ 
+          }
+            {this.props.loading === true
+              ? null
+              : <Home />}
+          </Layout>          
+        { /* </Router> */ }
+      </React.Fragment>
     )
   }
 }
