@@ -1,4 +1,4 @@
-import { RECEIVE_QUESTIONS, ANSWER_QUESTION } from '../actions/questions'
+import { RECEIVE_QUESTIONS, ANSWER_QUESTION, ADD_QUESTION } from '../actions/questions'
 
 export default function questions (state = {}, action) {
   switch(action.type) {
@@ -26,24 +26,14 @@ export default function questions (state = {}, action) {
           }
         }
       }
+      case ADD_QUESTION :
+      const { question } = action
+
+      return {
+        ...state,
+        [action.question.id]: action.question,
+      }
     default :
       return state
   }
 }
-
-{ /* 
-questions = {
-  "8xf0y6ziyjabvozdd253nd": {
-    id: '8xf0y6ziyjabvozdd253nd',
-    author: 'sarahedo',
-    timestamp: 1467166872634,
-    optionOne: {
-      votes: ['sarahedo'],
-      text: 'have horrible short term memory',
-    },
-    optionTwo: {
-      votes: [],
-      text: 'have horrible long term memory'
-    }
-  },
-*/ }

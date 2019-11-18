@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Card, Form, Button } from 'react-bootstrap'
+import { connect } from 'react-redux'
+import { handleAddQuestion } from '../actions/questions'
 
 class NewQuestion extends Component {
   state = {
@@ -30,11 +32,13 @@ class NewQuestion extends Component {
     e.preventDefault()
 
     const { optionOne, optionTwo } = this.state
+    const { dispatch, id } = this.props
 
     // todo: Add Tweet to Store
 
     console.log('New optionOne: ', optionOne)
     console.log('New optionTwo: ', optionTwo)
+    dispatch(handleAddQuestion(optionOne, optionTwo))
 
     this.setState(() => ({
       optionOne: '',
@@ -85,4 +89,4 @@ class NewQuestion extends Component {
   }
 }
 
-export default NewQuestion
+export default connect()(NewQuestion)
