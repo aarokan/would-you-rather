@@ -1,7 +1,6 @@
 import {
     _getUsers,
     _getQuestions,
-    _saveLikeToggle,
     _saveQuestion,
     _saveQuestionAnswer,
   } from './_DATA.js'
@@ -14,6 +13,10 @@ import {
       users,
       questions,
     }))
+  }
+  
+  export function getUsers (info) {
+    return _getUsers(info)
   }
   
   export function saveQuestion (info) {

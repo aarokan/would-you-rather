@@ -5,6 +5,8 @@ import Home from './Home'
 import { Layout } from './Layout'
 import LoadingBar from 'react-redux-loading'
 import NewQuestion from './NewQuestion'
+import QuestionPage from './QuestionPage'
+
 // import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // import { NavigationBar } from './NavigationBar'
 
@@ -26,9 +28,11 @@ class App extends Component {
           </Switch>
           */ 
           }
+          <NewQuestion />
+          <br />
             {this.props.loading === true
               ? null
-              : <Home />}
+              : <QuestionPage match={{params: {id: '6ni6ok3ym7mf1p33lnez'}}}/>}
           </Layout>          
         { /* </Router> */ }
       </React.Fragment>

@@ -1,0 +1,123 @@
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { formatQuestion, formatDate } from '../utils/helpers'
+import { Card, Button } from 'react-bootstrap'
+import { handleAnswerQuestion } from '../actions/questions'
+
+class QuestionPage extends Component {
+    state = {
+        answer: '',
+        answerSubmitted: false
+    };
+    handleSubmit(e, questionId) {
+        e.preventDefault()
+
+        const {dispatch} = this.props;
+        const {answer} = this.state;
+        
+        console.log(`handleAnswerQuestion(questionId: ${questionId}, answer:${answer}`)
+        dispatch(handleAnswerQuestion(questionId, answer));
+
+        this.setState(() => ({
+            answer: '',
+            answerSubmitted: true
+        }))
+    }
+    handleInputChange = (e) => {
+        const text = e.target.value;
+
+        this.setState(() => ({
+            answer: text
+        }));
+    }
+
+    render() {
+        console.log('questionPage props: ', this.props)
+        const { question, id } = this.props
+
+        if (question === null) {
+          return <p>This Question doesn't exist</p>
+        }
+        const {
+          name, avatar, answer, votedOptOne, votedOptTwo, qId, timestamp, optOneVotes, optTwoVotes, optOneText, optTwoText
+        } = question
+    
+        // Show result if the authedUser has already answered the question
+        if (question === null) {
+            return (
+                <p>test</p>
+            )
+        }
+
+        return (
+        <div>
+            <Card bg="light" style={{ width: '18rem' }}>
+                <Card.Header>{`${name} Asks:`}</Card.Header>
+                <Card.Body>
+                    <img
+                    src={avatar}
+                    alt={`Avatar of ${name}`}
+                    className='avatar'
+                    />
+                    <div>{formatDate(timestamp)}</div>
+                    <br />
+                    <Card.Title>Would You Rather?</Card.Title>
+                        <form onSubmit={(e) => this.handleSubmit(e, id)}>
+                            <div className="form-check">
+                                <input className="form-check-input"
+                                        type="radio"
+                                        name="questionPoll"
+                                        id="optionOne"
+                                        value="optionOne"
+                                        onChange={this.handleInputChange}
+                                />
+                                <label
+                                    className="form-check-label"
+                                    htmlFor="optionOne">
+                                    {optOneText}
+                                </label>
+                            </div>
+                            <div className="form-check">
+                                <input className="form-check-input"
+                                        type="radio"
+                                        name="questionPoll"
+                                        id="optionTwo"
+                                        value="optionTwo"
+                                        onChange={this.handleInputChange}
+                                />
+                                <label
+                                    className="form-check-label"
+                                    htmlFor="exampleRadios2">
+                                    {optTwoText}
+                                </label>
+                            </div>
+                            <br />
+                            <Button 
+                                variant="primary" 
+                                type="submit" 
+                                disabled={this.state.answer === ''}
+                            >
+                                Submit
+                            </Button>
+                        </form>
+                </Card.Body>
+            </Card>
+        </div>
+        )
+    }
+}
+
+function mapStateToProps ({ authedUser, users, questions }, props) {
+    const { id } = props.match.params
+    const question = questions[id]
+
+    return {
+        id,
+        authedUser,
+        question: question
+        ? formatQuestion(question, users[question.author], authedUser, users)
+        : null
+    }
+}
+
+export default connect(mapStateToProps)(QuestionPage)
