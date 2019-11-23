@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { formatQuestion, formatDate } from '../utils/helpers'
-import { Card, Button } from 'react-bootstrap'
+import { Card, Button, ProgressBar, Container, Row, Col, Badge } from 'react-bootstrap'
 import { handleAnswerQuestion } from '../actions/questions'
 
 class QuestionPage extends Component {
@@ -43,15 +43,79 @@ class QuestionPage extends Component {
         } = question
     
         // Show result if the authedUser has already answered the question
-        if (question === null) {
+        if (question.answer !== null) {
+            const total = optOneVotes + optTwoVotes
+            const optOnePercentage = optOneVotes / total * 100
+            const optTwoPercentage = optTwoVotes / total * 100
             return (
-                <p>test</p>
+                <div>
+                    <Card bg="light" style={{ width: '30rem' }}>
+                        <Card.Header>{`Asked by ${name}`}</Card.Header>
+                        <Card.Body>
+                            <img
+                            src={avatar}
+                            alt={`Avatar of ${name}`}
+                            className='avatar'
+                            />
+                            <div>{formatDate(timestamp)}</div>
+                            <br />
+                            <Card.Title>Would You Rather</Card.Title>
+                            <Container>
+                                <div>
+                                    <Row>
+                                        <Col xs={9}>
+                                            {optOneText}
+                                        </Col>
+                                        <Col>
+                                            {votedOptOne && <Badge variant="primary">You Voted</Badge>}
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col>
+                                            <ProgressBar now={optOnePercentage} label={`${optOnePercentage}%`} />
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col md={{ span: 4, offset: 4 }}>
+                                            <Badge variant="light">
+                                            {`${optOneVotes} out of ${total} votes`}
+                                            </Badge>
+                                        </Col>
+                                    </Row>
+                                </div>
+                                <br />
+                                <div>
+                                    <Row>
+                                        <Col xs={9}>
+                                            {optTwoText}
+                                        </Col>
+                                        <Col>
+                                            {votedOptTwo && <Badge variant="primary">You Voted</Badge>}
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col>
+                                            <ProgressBar now={optTwoPercentage} label={`${optTwoPercentage}%`} />
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col md={{ span: 4, offset: 4 }}>
+                                            <Badge variant="light">
+                                            {`${optTwoVotes} out of ${total} votes`}
+                                            </Badge>
+                                        </Col>
+                                    </Row>
+                                </div>
+                            </Container>
+                        </Card.Body>
+                    </Card>
+                </div>
             )
         }
 
         return (
         <div>
-            <Card bg="light" style={{ width: '18rem' }}>
+            <Card bg="light" style={{ width: '30rem' }}>
                 <Card.Header>{`${name} Asks:`}</Card.Header>
                 <Card.Body>
                     <img
@@ -62,44 +126,47 @@ class QuestionPage extends Component {
                     <div>{formatDate(timestamp)}</div>
                     <br />
                     <Card.Title>Would You Rather?</Card.Title>
-                        <form onSubmit={(e) => this.handleSubmit(e, id)}>
-                            <div className="form-check">
-                                <input className="form-check-input"
-                                        type="radio"
-                                        name="questionPoll"
-                                        id="optionOne"
-                                        value="optionOne"
-                                        onChange={this.handleInputChange}
-                                />
-                                <label
-                                    className="form-check-label"
-                                    htmlFor="optionOne">
-                                    {optOneText}
-                                </label>
-                            </div>
-                            <div className="form-check">
-                                <input className="form-check-input"
-                                        type="radio"
-                                        name="questionPoll"
-                                        id="optionTwo"
-                                        value="optionTwo"
-                                        onChange={this.handleInputChange}
-                                />
-                                <label
-                                    className="form-check-label"
-                                    htmlFor="exampleRadios2">
-                                    {optTwoText}
-                                </label>
-                            </div>
-                            <br />
-                            <Button 
-                                variant="primary" 
-                                type="submit" 
-                                disabled={this.state.answer === ''}
-                            >
-                                Submit
-                            </Button>
-                        </form>
+                        <Container>
+                            <form onSubmit={(e) => this.handleSubmit(e, id)}>
+                                <div className="form-check">
+                                    <input className="form-check-input"
+                                            type="radio"
+                                            name="questionPoll"
+                                            id="optionOne"
+                                            value="optionOne"
+                                            onChange={this.handleInputChange}
+                                    />
+                                    <label
+                                        className="form-check-label"
+                                        htmlFor="optionOne">
+                                        {optOneText}
+                                    </label>
+                                </div>
+                                <br />
+                                <div className="form-check">
+                                    <input className="form-check-input"
+                                            type="radio"
+                                            name="questionPoll"
+                                            id="optionTwo"
+                                            value="optionTwo"
+                                            onChange={this.handleInputChange}
+                                    />
+                                    <label
+                                        className="form-check-label"
+                                        htmlFor="exampleRadios2">
+                                        {optTwoText}
+                                    </label>
+                                </div>
+                                <br />
+                                <Button 
+                                    variant="primary" 
+                                    type="submit" 
+                                    disabled={this.state.answer === ''}
+                                >
+                                    Submit
+                                </Button>
+                            </form>
+                        </Container>
                 </Card.Body>
             </Card>
         </div>

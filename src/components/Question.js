@@ -36,7 +36,7 @@ class Question extends Component {
     
     return (
       <div>
-        <Card bg="light" style={{ width: '18rem' }}>
+        <Card bg="light" style={{ width: '30rem' }}>
           <Card.Header>{`${name} Asks:`}</Card.Header>
           <Card.Body>
             <img
