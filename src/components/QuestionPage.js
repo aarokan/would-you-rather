@@ -45,8 +45,8 @@ class QuestionPage extends Component {
         // Show result if the authedUser has already answered the question
         if (question.answer !== null) {
             const total = optOneVotes + optTwoVotes
-            const optOnePercentage = optOneVotes / total * 100
-            const optTwoPercentage = optTwoVotes / total * 100
+            const optOnePercentage = Math.floor(optOneVotes / total * 100)
+            const optTwoPercentage = Math.floor(optTwoVotes / total * 100)
             return (
                 <div>
                     <Card bg="light" style={{ width: '30rem' }}>

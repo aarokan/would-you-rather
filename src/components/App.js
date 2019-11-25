@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import Home from './Home'
@@ -36,13 +36,16 @@ class App extends Component {
               { this.props.loading === true
                 ? null
                 : <div>
+                  <Switch>
                     <Route path="/" exact component={Home} />
-                    <Route path="/question/:id" exact component={QuestionPage} />
+                    <Route path="/questions/:id" exact component={QuestionPage} />
                     <Route path="/leaderboard" exact component={Leaderboard} />
                     <Route path="/add" exact component={NewQuestion} />
                     <Route component={NoMatch} />
+                  </Switch>
                   </div>
               }
+              {/* <Route component={NoMatch} /> */}
               </Layout>
             </Fragment>
           )

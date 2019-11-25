@@ -5,7 +5,7 @@ Would You Rather Game built in React / Redux for submission to Udacity's React N
 
 To get started:
 
-- clone the project using git clone from `https://github.com/aarokan/would-you-rather`
+- clone the project using git clone from `https://github.com/aarokan/would-you-rather.git`
 - change to the project directory `cd would-you-rather`
 - install project with `npm install`
 - start server with `npm start`

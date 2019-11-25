@@ -36,8 +36,8 @@ class Question extends Component {
               {optTwoText}
             </Card.Text>
             {answer === null
-              ? <Link to={`/question/${id}`}><Button variant="primary">Answer Question</Button></Link>
-              : <Link to={`/question/${id}`}><Button variant="primary">View Result</Button></Link>
+              ? <Link to={`/questions/${id}`}><Button variant="primary">Answer Question</Button></Link>
+              : <Link to={`/questions/${id}`}><Button variant="primary">View Result</Button></Link>
             }
           </Card.Body>
         </Card>
