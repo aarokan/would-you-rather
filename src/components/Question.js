@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { formatQuestion, formatDate } from '../utils/helpers'
 import { Card, Button } from 'react-bootstrap'
-import { handleAnswerQuestion } from '../actions/questions'
 import { Link } from 'react-router-dom'
 
 class Question extends Component {  
@@ -13,7 +12,7 @@ class Question extends Component {
       return <p>This Question doesn't exist</p>
     }
     const {
-      name, avatar, answer, votedOptOne, votedOptTwo, id, timestamp, optOneVotes, optTwoVotes, optOneText, optTwoText
+      name, avatar, answer, id, timestamp, optOneText, optTwoText
     } = question
     
     return (

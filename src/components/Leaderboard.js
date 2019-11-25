@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import { formatQuestion, formatDate } from '../utils/helpers'
 import { Card, Container, Row, Col, Badge } from 'react-bootstrap'
 
 const Leaderboard = (props) => {

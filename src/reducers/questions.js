@@ -8,7 +8,6 @@ export default function questions (state = {}, action) {
         ...action.questions
       }
     case ANSWER_QUESTION :
-      console.log(`reducer: qid, answer, authed`, action.qid, action.answer, action.authedUser )
       return {
         ...state,
         [action.qid]: {

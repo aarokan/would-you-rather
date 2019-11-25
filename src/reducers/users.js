@@ -16,7 +16,6 @@ export default function users (state = {}, action) {
           }
       }
     case ADD_USER_QUESTION_ANSWER:
-      console.log('users reducers : qid, authed, answer', action.qid, action.authedUser, action.answer)
       return {
           ...state,
           [action.authedUser]: {

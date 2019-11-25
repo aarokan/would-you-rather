@@ -19,14 +19,11 @@ class NavigationBar extends Component {
     render() {
         const { authedUser } = this.props
         const {redirectLogin} = this.state
-        console.log('------nav authed: ', authedUser)
-        console.log('------nav state: ', this.state)
 
         if (redirectLogin === true) {
             return (<Redirect to="/"/>)
         }
 
-        console.log('nav authedUser :', authedUser)
         return (
             <div>
                 { authedUser === null
@@ -43,10 +40,6 @@ class NavigationBar extends Component {
                                         <NavLink to='/leaderboard' exact activeClassName='active'
                                                 className="nav-item nav-link">Leaderboard</NavLink>
                                     </ul>
-                                    {/* <Row>
-                                        <Col></Col>
-                                        <Col></Col>
-                                    </Row> */}
                                     <span
                                         style={{marginLeft: '90px'}}
                                         className="navbar-text margin-left-100 margin-right-25 text-info"
@@ -79,148 +72,3 @@ function mapStateToProps({authedUser, users}) {
 }
 
 export default connect(mapStateToProps)(NavigationBar)
-
-{
-    /*
-
-function NavigationBar() {
-    return (
-        <Navbar expand="lg">
-            <Navbar.brand href="/">Would You Rather</Navbar.brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="ml-auto">
-                    <Nav.Item>
-                        <Nav.Link>
-                            <NavLink to='/' exact activeClassName='active'>
-                                Home
-                            </NavLink>
-                            {/* <Link to="/">Home</Link> }
-                        </Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                        <Nav.Link>
-                            <NavLink to='/add' activeClassName='active'>
-                                New Question
-                            </NavLink>
-                            {/* <Link to="/add">New Question</Link> }
-                        </Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                        <Nav.Link>
-                            <NavLink to='/leaderboard' activeClassName='active'>
-                                    Leaderboard
-                            </NavLink>
-                            {/* <Link to="/leaderboard">Leaderboard</Link> }
-                        </Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                        <Nav.Link>
-                            <NavLink to='/login' activeClassName='active'>
-                                    Login
-                            </NavLink>
-                            {/* <Link to="/login">Logout</Link> }
-                        </Nav.Link>
-                    </Nav.Item>
-                </Nav>
-            </Navbar.Collapse>
-        </Navbar>
-    )
-  }
-  
-  export default NavigationBar;
-  /* }
-// export default function NavigationBar () {
-    
-//     return (
-//         <Navbar expand="lg">
-//             <Navbar.brand href="/">Would You Rather</Navbar.brand>
-//             <Navbar.Toggle aria-controls="basic-navbar-nav" />
-//             <Navbar.Collapse id="basic-navbar-nav">
-//                 <Nav className="ml-auto">
-//                     <Nav.Item>
-//                         <Nav.Link>
-//                             <NavLink to='/' exact activeClassName='active'>
-//                                 Home
-//                             </NavLink>
-//                             {/* <Link to="/">Home</Link> */}
-//                         </Nav.Link>
-//                     </Nav.Item>
-//                     <Nav.Item>
-//                         <Nav.Link>
-//                             <NavLink to='/add' activeClassName='active'>
-//                                 New Question
-//                             </NavLink>
-//                             {/* <Link to="/add">New Question</Link> */}
-//                         </Nav.Link>
-//                     </Nav.Item>
-//                     <Nav.Item>
-//                         <Nav.Link>
-//                             <NavLink to='/leaderboard' activeClassName='active'>
-//                                     Leaderboard
-//                             </NavLink>
-//                             {/* <Link to="/leaderboard">Leaderboard</Link> */}
-//                         </Nav.Link>
-//                     </Nav.Item>
-//                     <Nav.Item>
-//                         <Nav.Link>
-//                             <NavLink to='/login' activeClassName='active'>
-//                                     Login
-//                             </NavLink>
-//                             {/* <Link to="/login">Logout</Link> */}
-//                         </Nav.Link>
-//                     </Nav.Item>
-//                 </Nav>
-//             </Navbar.Collapse>
-//         </Navbar>
-//     )
-//   }
-
-{ /*
-    export const NavigationBar = () => (
-        <Styles>
-            <Navbar expand="lg">
-                <Navbar.brand href="/">Would You Rather</Navbar.brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="ml-auto">
-                        <Nav.Item>
-                            <Nav.Link>
-                            <Link to="/">Home</Link>
-                            </Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link>
-                            <Link to="/add">New Question</Link>
-                            </Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link>
-                            <Link to="/leaderboard">Leaderboard</Link>
-                            </Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link>
-                            <Link to="/login">Logout</Link>
-                            </Nav.Link>
-                        </Nav.Item>
-                    </Nav>
-                </Navbar.Collapse>
-            </Navbar>
-        </Styles>
-    )
-
-
-    ----------------------------
-    const Styles = styled.div`
-  .navbar {
-    background-color: #222;
-  }
-  a, .navbar-brand, .navbar-nav .nav-link {
-    color: #bbb;
-    &:hover {
-      color: white;
-    }
-  }
-`;
-*/ }

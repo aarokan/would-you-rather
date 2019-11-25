@@ -34,12 +34,8 @@ class NewQuestion extends Component {
     e.preventDefault()
 
     const { optionOne, optionTwo } = this.state
-    const { dispatch, id } = this.props
+    const { dispatch } = this.props
 
-    // todo: Add Tweet to Store
-
-    console.log('New optionOne: ', optionOne)
-    console.log('New optionTwo: ', optionTwo)
     dispatch(handleAddQuestion(optionOne, optionTwo))
 
     this.setState(() => ({

@@ -17,7 +17,6 @@ class App extends Component {
     this.props.dispatch(handleInitialData())
   }
   render() {
-    console.log('App Loading, authed: ', this.props.loading, this.props.authedUser)
     return (
       <Router>
         <Fragment>
@@ -45,7 +44,6 @@ class App extends Component {
                   </Switch>
                   </div>
               }
-              {/* <Route component={NoMatch} /> */}
               </Layout>
             </Fragment>
           )

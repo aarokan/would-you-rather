@@ -15,7 +15,6 @@ class QuestionPage extends Component {
         const {dispatch} = this.props;
         const {answer} = this.state;
         
-        console.log(`handleAnswerQuestion(questionId: ${questionId}, answer:${answer}`)
         dispatch(handleAnswerQuestion(questionId, answer));
 
         this.setState(() => ({
@@ -32,14 +31,13 @@ class QuestionPage extends Component {
     }
 
     render() {
-        console.log('questionPage props: ', this.props)
         const { question, id } = this.props
 
         if (question === null) {
           return <p>This Question doesn't exist</p>
         }
         const {
-          name, avatar, answer, votedOptOne, votedOptTwo, qId, timestamp, optOneVotes, optTwoVotes, optOneText, optTwoText
+          name, avatar, votedOptOne, votedOptTwo, timestamp, optOneVotes, optTwoVotes, optOneText, optTwoText
         } = question
     
         // Show result if the authedUser has already answered the question
