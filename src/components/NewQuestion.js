@@ -2,11 +2,13 @@ import React, { Component } from 'react'
 import { Card, Form, Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { handleAddQuestion } from '../actions/questions'
+import { Redirect } from 'react-router-dom'
 
 class NewQuestion extends Component {
   state = {
     optionOne: '',
-    optionTwo: ''
+    optionTwo: '',
+    toHome: false,
   }
 
   
@@ -42,13 +44,17 @@ class NewQuestion extends Component {
 
     this.setState(() => ({
       optionOne: '',
-      optionTwo: ''
+      optionTwo: '',
+      toHome: true,
     }))
   }
   render() {
-    const { optionOne, optionTwo } = this.state
+    const { optionOne, optionTwo, toHome } = this.state
 
-    {/* todo: Redirect to / if submitted */}
+    // Redirect to / if submitted
+    if (toHome === true) {
+      return <Redirect to='/' />
+    }
 
     return (
         <div>

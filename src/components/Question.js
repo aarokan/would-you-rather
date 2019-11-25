@@ -3,27 +3,9 @@ import { connect } from 'react-redux'
 import { formatQuestion, formatDate } from '../utils/helpers'
 import { Card, Button } from 'react-bootstrap'
 import { handleAnswerQuestion } from '../actions/questions'
+import { Link } from 'react-router-dom'
 
-class Question extends Component {
-  handleAnswer = (e) => {
-    e.preventDefault()
-
-    // todo: Handle Answer Question
-    const { dispatch, question, authedUser } = this.props
-
-      dispatch(handleAnswerQuestion({
-        id: question.id,
-        answer: question.answer,
-        authedUser
-      }))
-  }
-
-  handleViewResult = (e) => {
-    e.preventDefault()
-
-    // todo: Handle View Result
-  }
-  
+class Question extends Component {  
   render() {
     const { question } = this.props
 
@@ -54,8 +36,8 @@ class Question extends Component {
               {optTwoText}
             </Card.Text>
             {answer === null
-              ? <Button variant="primary" onClick={this.handleAnswer}>Answer Question</Button>
-              : <Button variant="primary" onClick={this.handleViewResult}>View Result</Button>
+              ? <Link to={`/question/${id}`}><Button variant="primary">Answer Question</Button></Link>
+              : <Link to={`/question/${id}`}><Button variant="primary">View Result</Button></Link>
             }
           </Card.Body>
         </Card>

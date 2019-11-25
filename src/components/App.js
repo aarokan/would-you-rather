@@ -7,38 +7,46 @@ import { Layout } from './Layout'
 import LoadingBar from 'react-redux-loading'
 import NewQuestion from './NewQuestion'
 import QuestionPage from './QuestionPage'
-import { NavigationBar } from './NavigationBar'
+import NavigationBar from './NavigationBar'
+import Login from './Login'
+import Leaderboard from './Leaderboard'
+import NoMatch from './NoMatch'
 
 class App extends Component {
   componentDidMount() {
     this.props.dispatch(handleInitialData())
   }
   render() {
+    console.log('App Loading, authed: ', this.props.loading, this.props.authedUser)
     return (
       <Router>
         <Fragment>
-          <LoadingBar />
+        {this.props.authedUser === null
+          ? (
             <Layout>
-              {/* <NavigationBar /> */}
-              { 
-              /* 
-              <Switch>
-                  <Route exact path="/" component={Home} />
-              </Switch>
-              */ 
-              }
-              {this.props.loading === true
+              <Login />
+            </Layout>
+            )
+          :
+          (
+            <Fragment>
+              <LoadingBar />
+              <Layout>
+              <NavigationBar />
+              { this.props.loading === true
                 ? null
                 : <div>
-                    <Route path='/' exact component={Home} />
-                    <Route path='/question/:id' component={QuestionPage} />
-                    <Route path='/newquestion' component={NewQuestion} />
-                    {/* { 
-                    <Route path='/leaderboard' component={Leaderboard} />
-                    <Route path='/login' component={Login} />
-                    } */}
-                  </div>}
-            </Layout>          
+                    <Route path="/" exact component={Home} />
+                    <Route path="/question/:id" exact component={QuestionPage} />
+                    <Route path="/leaderboard" exact component={Leaderboard} />
+                    <Route path="/add" exact component={NewQuestion} />
+                    {/* <Route component={NoMatch} /> */}
+                  </div>
+              }
+              </Layout>
+            </Fragment>
+          )
+        }
         </Fragment>
       </Router>
     )
@@ -47,7 +55,8 @@ class App extends Component {
 
 function mapStateToProps ({ authedUser }) {
   return {
-    loading: authedUser === null
+    loading: authedUser === null,
+    authedUser
   }
 }
 
